@@ -3,20 +3,20 @@ $(document).ready(function(){
 
 	function Jukebox(){
 
-		playlist = ['audio/American_idiot.mp3', 'audio/Castles_Made_of_Sand.mp3', 'audio/Cemetery_drive.mp3', 'audio/Helena.mp3'];
+		var playlist = ['audio/American_idiot.mp3', 'audio/Castles_Made_of_Sand.mp3', 'audio/Cemetery_drive.mp3', 'audio/Helena.mp3'];
 
 		var audio = document.createElement('audio');
-
-		shuffle = true;
-		tracks = playlist.length;
-		i = Math.floor((Math.random() * tracks));
+		var shuffle = true; // default shuffle setting
+		var tracks = playlist.length;
+		var i = Math.floor((Math.random() * tracks));
+		var clicked = true;	// regarding play click event
 		audio.src = playlist[i];
 
 		this.play = function(){
 			audio.play();
 		}
 
-		random_track = function(){
+		var random_track = function(){
 			audio.pause();
 			audio.currentTime = 0;
 			i = Math.floor((Math.random() * tracks));
@@ -24,7 +24,16 @@ $(document).ready(function(){
 			audio.play();
 		};
 
-		var clicked = true;	//set to true since audio will play on load.
+		var show_shuffle_status = function(){
+			if(shuffle){
+				$('#shuffle-status').text('On');
+			}else{
+				$('#shuffle-status').text('On');
+			};
+		};
+
+		show_shuffle_status();
+
 		
 		$('#aud-play').on('click', function(){
 
@@ -50,7 +59,7 @@ $(document).ready(function(){
 			}else{
 				shuffle =  false;
 			};
-
+			$('#shuffle-status').text(shuffle);
 		});
 
 		$('#aud-next').on( 'click', function(){
@@ -59,7 +68,7 @@ $(document).ready(function(){
 				random_track();
 			}else{
 
-				if(i == playlist.length - 1){
+				if(i == tracks - 1){
 					i = 0;					
 				}else{
 					i = i + 1;
@@ -76,8 +85,8 @@ $(document).ready(function(){
 
 	};
 
-	var mission = new Jukebox();
-	mission.play();
+	var tunes = new Jukebox();
+	tunes.play();
 
 
 });
