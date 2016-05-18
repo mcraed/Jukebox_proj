@@ -84,25 +84,6 @@ $(document).ready(function(){
 			show_shuffle_status();
 		});
 
-		$('#aud-next').on( 'click', function(){
-		
-			if(shuffle){
-				random_track();
-			}else{
-
-				if(i == track_count - 1){
-					i = 0;					
-				}else{
-					i = i + 1;
-				};
-				audio.src = songs[i].file_name;
-				audio.play();
-				now_playing = songs[i];
-				$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
-				history_push(now_playing);
-			};
-		});
-
 		$('#aud-last').on('click', function(){
 
 			if(!back_clicked){
@@ -125,6 +106,42 @@ $(document).ready(function(){
 				};
 			};
 		});
+
+		$('#aud-next').on( 'click', function(){
+		
+		// testing if element is NOT in an array
+		if(now_playing === play_history[h] ){
+			
+			if(h === play_history.length - 1){
+				random_track();
+				console.log('well you thats all of your history! heres a random song; lets go from there')
+			}else{
+				h = h + 1;
+				audio.src = play_history[h].file_name;
+				audio.play();
+				now_playing = play_history[h];
+				$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
+				console.log('this song is coming from your history')
+			};
+		}else{
+			if(shuffle){
+				random_track();
+			}else{
+
+				if(i == track_count - 1){
+					i = 0;					
+				}else{
+					i = i + 1;
+				};
+				audio.src = songs[i].file_name;
+				audio.play();
+				now_playing = songs[i];
+				$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
+				history_push(now_playing);
+			};
+		};	
+	});
+
 
 
 		$('#aud-random').click(function(){
