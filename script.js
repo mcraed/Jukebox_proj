@@ -6,17 +6,17 @@ $(document).ready(function(){
 		playlist = ['audio/American_idiot.mp3', 'audio/Castles_Made_of_Sand.mp3', 'audio/Cemetery_drive.mp3', 'audio/Helena.mp3'];
 
 		var audio = document.createElement('audio');
-		shuffle = true
-		i = Math.floor((Math.random() * tracks));
 
-		
+		shuffle = true;
+		tracks = playlist.length;
+		i = Math.floor((Math.random() * tracks));
 		audio.src = playlist[i];
 
 		this.play = function(){
 			audio.play();
 		}
 
-		random_track = funtion(){
+		random_track = function(){
 			audio.pause();
 			audio.currentTime = 0;
 			i = Math.floor((Math.random() * tracks));
@@ -28,7 +28,7 @@ $(document).ready(function(){
 		
 		$('#aud-play').on('click', function(){
 
-			if(clicked == false){
+			if(!clicked){
 				audio.play();
 				clicked = true;	
 			}else{
@@ -43,23 +43,27 @@ $(document).ready(function(){
 		});
 
 		$('#aud-shuffle').click(function(){
-			if(shuffle){
-				shuffle = false;
-			}else{
+
+			if(!shuffle){
+				random_track();
 				shuffle = true;
+			}else{
+				shuffle =  false;
 			};
 
 		});
 
 		$('#aud-next').on( 'click', function(){
-				var tracks = playlist.length;
-			
-			if(shuffle){
-				random_track
+		
+			if(shuffle == true){
+				random_track();
 			}else{
-				audio.pause();
-				audio.currentTime = 0;
-				i++;
+
+				if(i == playlist.length - 1){
+					i = 0;					
+				}else{
+					i = i + 1;
+				};
 				audio.src = playlist[i];
 				audio.play();
 			};
@@ -67,7 +71,7 @@ $(document).ready(function(){
 
 
 		$('#aud-random').click(function(){
-			random_track
+			random_track();
 		});	
 
 	};
