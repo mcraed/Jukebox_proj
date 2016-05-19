@@ -39,7 +39,7 @@ $(document).ready(function(){
 			var a = $('<a>')
 				.addClass('playlist-item')
 				.attr('href', '#')
-				.text(song.name)
+				.text(song.name + ' - ' + song.artist)
 				.appendTo(li);
 		});
 
@@ -121,7 +121,6 @@ $(document).ready(function(){
 		$('#aud-shuffle').click(function(){
 
 			if(!shuffle){
-				random_track();
 				shuffle = true;
 			}else{
 				shuffle =  false;
