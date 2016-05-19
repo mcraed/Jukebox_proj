@@ -1,16 +1,15 @@
 $(document).ready(function(){
 
-
 	console.log('working');
 
 	function Jukebox(){
-
 
 		function Song(name, artist, file_name){
 			this.name = name;
 			this.artist = artist;
 			this.file_name = file_name;
 		}
+
 		// default songs
 		var castles = new Song('Castles Made of Sand', 'Jimi Hendrix', 'audio/Castles_Made_of_Sand.mp3'); 
 		var cemetery_drive = new Song('Cemetery Drive', 'My Chemical Romance', 'audio/Cemetery_drive.mp3'); 
@@ -18,29 +17,30 @@ $(document).ready(function(){
 		var berry = new Song('The Blacker the Berry', 'Kendrick Lamar', 'audio/The_Blacker_the_Berry.mp3')
 		var taylor_gang = new Song('Taylor Gang', 'Wiz Khalifa', 'audio/Taylor_Gang.mp3')
 
-		 songs = [taylor_gang, berry, castles, cemetery_drive, helena];
+		songs = [taylor_gang, berry, castles, cemetery_drive, helena];
 
-		var audio = document.createElement('audio');
+		 audio = document.createElement('audio');
 		var shuffle = true; // default shuffle setting
 		var track_count = songs.length;
 		var i = Math.floor((Math.random() * track_count));
-		var clicked = true;	// regarding play click event
+		var clicked = true;	// regarding play click event; true because audio plays on load
 		 now_playing = songs[i];
 		 play_history = [];
 		var	h	= play_history.length - 1;
 
 		audio.src = songs[i].file_name;
 
-		// trying to add functionality so users to add song files to playlist
-		$('#file-name-input').on('click', function(){
-			var song;
-			var name = $('#song-name-input').val();
-			var artist = $('#artist-name-input').val();
-			var file_name = $('#file-name-input').val();
-
-			song = new Song(name, artist, file_name);
-			songs.push(song);
-			console.log(name +' by ' + artist + " has been added to your playlist!");
+		// this is the playlist (ul) - add click event that will play corresponding song and push to play history  
+		var song_list = $('#playlist');
+		songs.map( (song, i) => {
+			var li = $('<li/>')
+				.addClass('song-name')
+				.appendTo(song_list);
+			var a = $('<a>')
+				.addClass('playlist-item')
+				.attr('href', '#')
+				.text(song.name)
+				.appendTo(li);
 		});
 
 		var history_push = function(){
@@ -85,11 +85,27 @@ $(document).ready(function(){
 			$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
 			history_push(now_playing);
 		}
+
+		$('#add-song-submit').on('click', function(){
+			var song_name = $('#song-name-input').val();
+			var artist_name = $('#artist-name-input').val();
+			var file_name = $('#file-name-input').val();
+
+			var new_song = new Song(song_name, artist_name, file_name);
+			songs.push(new_song);
+			i = songs.length - 1
+			audio.src = songs[i].file_name;
+			audio.play();
+			now_playing = songs[i]
+			$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
+			console.log(song_name +' by ' + artist_name + " has been added to your playlist!");
+			history_push();
+		});
 		
 		$('#aud-play').on('click', function(){
 
 			if(!clicked){
-				audio.play();
+				random_track
 				clicked = true;	
 			}else{
 				audio.pause();
@@ -97,7 +113,7 @@ $(document).ready(function(){
 			};
 		});
 
-		$('aud-stop').on('click', function(){
+		$('#aud-stop').on('click', function(){
 			audio.pause();
 			audio.currentTime = 0;
 		});
@@ -136,42 +152,38 @@ $(document).ready(function(){
 
 		$('#aud-next').on( 'click', function(){
 		
-		// testing if element is NOT in an array
-		if(now_playing === play_history[h] ){
-			if(h == play_history.length - 1){
-				random_track();
-			}else{
-				h = h + 1;
-				audio.src = play_history[h].file_name;
-				audio.play();
-				now_playing = play_history[h];
-				$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
-			};
-		}else{
-			if(shuffle){
-				random_track();
-			}else{
-
-				if(i == track_count - 1){
-					i = 0;					
+			// testing if element is NOT in an array
+			if(now_playing === play_history[h] ){
+				if(h == play_history.length - 1){
+					random_track();
 				}else{
-					i = i + 1;
+					h = h + 1;
+					audio.src = play_history[h].file_name;
+					audio.play();
+					now_playing = play_history[h];
+					$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
 				};
-				audio.src = songs[i].file_name;
-				audio.play();
-				now_playing = songs[i];
-				$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
-				history_push(now_playing);
-			};
-		};	
-	});
+			}else{
+				if(shuffle){
+					random_track();
+				}else{
 
-
-
+					if(i == track_count - 1){
+						i = 0;					
+					}else{
+						i = i + 1;
+					};
+					audio.src = songs[i].file_name;
+					audio.play();
+					now_playing = songs[i];
+					$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
+					history_push(now_playing);
+				};
+			};	
+		});
 		$('#aud-random').click(function(){
 			random_track();
 		});	
-
 	};
 
 	var tunes = new Jukebox();
