@@ -105,7 +105,7 @@ $(document).ready(function(){
 		$('#aud-play').on('click', function(){
 
 			if(!clicked){
-				random_track
+				audio.play();
 				clicked = true;	
 			}else{
 				audio.pause();
