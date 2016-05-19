@@ -13,13 +13,23 @@
 	<div id=controller>
 		<button id="aud-last">Last</button>
 		<button id="aud-play">Play/ Pause</button>
-		<button id="aud-next">next</button>
-
+		<button id="aud-next">Next</button>	
+		<button id="aud-stop">Stop</button>
 		<br />
 		<br />
 		<button id="aud-random">Random</button>
 		<button id="aud-shuffle">Shuffle</button><h5>Shuffle: <span id='shuffle-status'></span></h5>
 		<h5>Now playing: <span id="now-playing"></span></h5>
+
+		<form id="add-song-form">
+			<label>Song Name: </label>
+			<input type="text" id='song-name-input'>
+			<label>Artist: </label>
+			<input type="text" id='artist-name-input'>
+			<label>Audio File: </label>
+			<input type="file" id="file-name-input">
+			<input type="submit" value="submit" id="add-song-submit">
+		</form>
 	</div>
 </body>
 </html>
