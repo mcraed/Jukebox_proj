@@ -29,10 +29,11 @@ $(document).ready(function(){
 		var	h	= play_history.length - 1;
 
 		audio.src = songs[i].file_name;
+			e = 0;
 
 		// this is the playlist (ul) - add click event that will play corresponding song and push to play history  
 		var song_list = $('#playlist');
-		songs.map( (song, i) => {
+		songs.map( (song, f) => {
 			var li = $('<li/>')
 				.addClass('song-name')
 				.appendTo(song_list);
@@ -42,6 +43,13 @@ $(document).ready(function(){
 				.text(song.name + ' - ' + song.artist)
 				.appendTo(li);
 		});
+
+		// make this functional - to play song on click (for testing); then to place in song order queue
+		// $('.playlist-item').on('click', function(){
+		// 	now_playing = this
+		// 	$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
+		// 	history_push(now_playing);
+		// });
 
 		var history_push = function(){
 			play_history.push(now_playing);
@@ -68,6 +76,7 @@ $(document).ready(function(){
 		show_shuffle_status();
 
 
+
 		$(audio).on('ended', function(){
 			if(shuffle){
 				random_track();				
@@ -86,37 +95,27 @@ $(document).ready(function(){
 			history_push(now_playing);
 		}
 
-		$('#add-song-submit').on('click', function(){
-			var song_name = $('#song-name-input').val();
-			var artist_name = $('#artist-name-input').val();
-			var file_name = $('#file-name-input').val();
-
-			var new_song = new Song(song_name, artist_name, file_name);
-			songs.push(new_song);
-			i = songs.length - 1
-			audio.src = songs[i].file_name;
-			audio.play();
-			now_playing = songs[i]
-			$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
-			console.log(song_name +' by ' + artist_name + " has been added to your playlist!");
-			history_push();
+		$('#aud-stop').on('click', function(){
+			audio.pause();
+			audio.currentTime = 0;
+			now_playing = 0;
 		});
 		
 		$('#aud-play').on('click', function(){
 
-			if(!clicked){
-				audio.play();
-				clicked = true;	
+			if(now_playing == 0){
+				random_track();
 			}else{
-				audio.pause();
-				clicked = false;				
+				if(!clicked){
+					audio.play();
+					clicked = true;	
+				}else{
+					audio.pause();
+					clicked = false;				
+				};
 			};
 		});
 
-		$('#aud-stop').on('click', function(){
-			audio.pause();
-			audio.currentTime = 0;
-		});
 
 		$('#aud-shuffle').click(function(){
 
@@ -180,9 +179,36 @@ $(document).ready(function(){
 				};
 			};	
 		});
-		$('#aud-random').click(function(){
-			random_track();
-		});	
+		
+			$('#aud-random').click(function(){
+				random_track();
+			});	
+
+		$('#add-song-submit').on('click', function(){
+			var song_name = $('#song-name-input').val();
+			var artist_name = $('#artist-name-input').val();
+			var file_name = $('#file-name-input').val();
+
+			var new_song = new Song(song_name, artist_name, file_name);
+			songs.push(new_song);
+			i = songs.length - 1
+			audio.src = songs[i].file_name;
+			audio.play();
+			now_playing = songs[i]
+			$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
+
+			var li = $('<li/>')
+				.addClass('song-name')
+				.appendTo(song_list);
+			var a = $('<a>')
+				.addClass('playlist-item')
+				.attr('href', '#')
+				.text(new_song.name + ' - ' + new_song.artist)
+				.appendTo(li);
+
+			console.log(song_name +' by ' + artist_name + " has been added to your playlist!");
+			history_push();
+		});
 	};
 
 	var tunes = new Jukebox();
