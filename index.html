@@ -2,44 +2,59 @@
 <html>
 <head>
 	<title>Jukebox</title>
-
 	<script src="js/jquery-2.2.3.min.js"></script>
-
-	<script src="script.js"></script>
+	<script src="js/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 
+	<div id="container">
+		<div id="player">
+			<div id=controller>
+				<button id="aud-last"><img src="images/black_4_audio_title_back-128.png"></button>
 
-	<div id=controller>
-		<button id="aud-last">Last</button>
-		<button id="aud-play">Play/ Pause</button>
-		<button id="aud-next">Next</button>	
-		<button id="aud-stop">Stop</button>
-		<br />
-		<br />
-		<button id="aud-random">Random</button>
-		<button id="aud-shuffle">Shuffle</button><h5>Shuffle: <span id='shuffle-status'></span></h5>
-		<h5>Now playing: <span id="now-playing"></span></h5>
+				<button id="aud-random"><img src="images/miscellaneous-55-128.png"></button>
 
-		<div id="playlist-container">
-			<ul id='playlist'>
-				<!-- <li class="song-name">
-					<a class="playlist-item">
-				</li> -->
-			</ul>
+				<button id="aud-next"><img src="images/black_4_audio_title_forward-128.png"></button>	
+
+			</div>
+			<div id="play-container">
+				<div id="player-info">
+					<h3>Now playing: <span id="now-playing"></span></h3>
+					<h3>Shuffle: <span id='shuffle-status'></span></h3>
+				</div>
+				<button id="aud-play"><img src="images/59-play-2-128.png"></button>
+			</div>
+			<div id="shuffler">
+
+				<button id="aud-shuffle"><img src="images/media-shuffle.png"></button>
+
+				<button id="aud-stop"><img src="images/black_4_audio_stop-128.png"></button>
+			</div>
 		</div>
+		<div id=bottom-container>
+			<div id="playlist-container">
+				<ul id='playlist'>
+					<!-- <li class="song-name">
+						<a class="playlist-item">
+					</li> -->
+				</ul>
 
-		<form id="add-song-form">
-			<label>Song Name: </label>
-			<input type="text" id='song-name-input'>
-			<label>Artist: </label>
-			<input type="text" id='artist-name-input'>
-			<label>Audio File: </label>
-			<input type="text" id="file-name-input">
-			<input type="button" value="submit" id="add-song-submit">
-		</form>
-
-
+			</div>
+			<form id="add_song_form">
+				<label>Song Name: </label>
+				<input type="text" class="add_song_input" id='song-name-input'>
+				<label>Artist: </label>
+				<input type="text" class="add_song_input" id='artist-name-input'>
+				<label>Audio File: </label>
+				<input type="text" class="add_song_input" id="file-name-input">
+				<br />
+				<br />
+				<input type="button" value="submit" class="add_song_input" id="add-song-submit">
+			</form>
+		</div>
+		<br clear="all" />
+	</div>
 
 
 	</div>

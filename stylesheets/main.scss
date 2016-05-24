@@ -1,0 +1,153 @@
+html{
+	background: url('../images/Meme-Faces-Challenge-Denied-02.jpg') no-repeat center center fixed;
+}
+
+*{
+	color: #D8E1E7;
+}
+
+@media all and (max-width: 469px){
+html{
+	background: url('../images/deph-of-field.jpg') no-repeat center center fixed;
+}
+
+#container{
+	width: 95%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+button{
+	background: RGBA(218, 220, 217, .6)
+}
+
+
+	#player{
+		width: 98%;
+		margin: 10vh auto;
+	}
+
+	#controller{
+		width: 98%;
+		margin: 0 auto;
+
+		button{
+			margin-left: 2.2em;
+		}
+	}
+
+	#play-container{
+		width: 98%;
+		margin: 40px auto;
+
+	}
+	#player-info{
+		margin-bottom: 20px;
+		padding: 2px;
+		min-height: 75px;
+		color: #D8E1E7;
+		text-align: center;
+		background: RGBA(000, 000, 000, .6);
+	}
+
+	#aud-play{
+		margin-left: 105px;
+	}
+
+	#shuffler{
+		width: 98%;
+		margin: 0em auto;
+		
+		button{
+			margin-left: 5.1em;
+		}
+	}
+
+	#add_song_form, #playlist-container{
+		display: none;
+	}
+}
+
+@media all and (min-width: 469px) and (max-width: 769px){
+
+	html{
+	background: url('../images/deph-of-field.jpg') no-repeat center center fixed;
+	}
+
+	button{
+		background: RGBA(218, 220, 217, .6);
+	}
+
+	#player{
+		width: 98%;
+		margin: 10vh auto;
+	}
+
+	#controller{
+		width: 98%;
+		margin: 0 auto;
+		text-align: center;
+
+		button{
+			margin-left: 8%;
+			margin-bottom: 20px;
+		}
+	}
+
+	#play-container{
+		width: 98%;
+		margin: 40px auto;
+		text-align: center;
+	}
+
+	#player-info{
+		margin-bottom: 20px;
+		padding: 2px;
+		min-height: 75px;
+		color: #D8E1E7;
+		text-align: center;
+		background: RGBA(000, 000, 000, .6);
+	}
+
+	#shuffler{
+		width: 98%;
+		margin: 0em auto;
+		text-align: center;
+		
+		#aud-shuffle{
+			margin-left: -2.5em;
+		}
+
+
+	
+	}
+
+	#add_song_form{
+		display: inline-block;
+		margin-left: 13%;
+		label, input{
+			display: block;
+		}
+
+		button{
+			background-color: default;
+		}
+	}
+
+	ul{
+		display: inline-block;
+		float: right;
+		margin-right: 7%;
+		background: RGBA(000, 000, 000, .6); 
+		li{
+			list-style: none;
+		}
+
+		a, a :hover, a :active{
+			color: #D8E1E7;
+			text-decoration: none;
+		}
+
+	}
+
+}

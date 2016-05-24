@@ -1,0 +1,110 @@
+html {
+  background: url("../images/Meme-Faces-Challenge-Denied-02.jpg") no-repeat center center fixed; }
+
+* {
+  color: #D8E1E7; }
+
+@media all and (max-width: 469px) {
+  html {
+    background: url("../images/deph-of-field.jpg") no-repeat center center fixed; }
+
+  #container {
+    width: 95%;
+    height: 100%;
+    margin: 0 auto; }
+
+  button {
+    background: RGBA(218, 220, 217, 0.6); }
+
+  #player {
+    width: 98%;
+    margin: 10vh auto; }
+
+  #controller {
+    width: 98%;
+    margin: 0 auto; }
+    #controller button {
+      margin-left: 2.2em; }
+
+  #play-container {
+    width: 98%;
+    margin: 40px auto; }
+
+  #player-info {
+    margin-bottom: 20px;
+    padding: 2px;
+    min-height: 75px;
+    color: #D8E1E7;
+    text-align: center;
+    background: RGBA(0, 0, 0, 0.6); }
+
+  #aud-play {
+    margin-left: 105px; }
+
+  #shuffler {
+    width: 98%;
+    margin: 0em auto; }
+    #shuffler button {
+      margin-left: 5.1em; }
+
+  #add_song_form, #playlist-container {
+    display: none; } }
+@media all and (min-width: 469px) and (max-width: 769px) {
+  html {
+    background: url("../images/deph-of-field.jpg") no-repeat center center fixed; }
+
+  button {
+    background: RGBA(218, 220, 217, 0.6); }
+
+  #player {
+    width: 98%;
+    margin: 10vh auto; }
+
+  #controller {
+    width: 98%;
+    margin: 0 auto;
+    text-align: center; }
+    #controller button {
+      margin-left: 8%;
+      margin-bottom: 20px; }
+
+  #play-container {
+    width: 98%;
+    margin: 40px auto;
+    text-align: center; }
+
+  #player-info {
+    margin-bottom: 20px;
+    padding: 2px;
+    min-height: 75px;
+    color: #D8E1E7;
+    text-align: center;
+    background: RGBA(0, 0, 0, 0.6); }
+
+  #shuffler {
+    width: 98%;
+    margin: 0em auto;
+    text-align: center; }
+    #shuffler #aud-shuffle {
+      margin-left: -2.5em; }
+
+  #add_song_form {
+    display: inline-block;
+    margin-left: 13%; }
+    #add_song_form label, #add_song_form input {
+      display: block; }
+    #add_song_form button {
+      background-color: default; }
+
+  ul {
+    display: inline-block;
+    float: right;
+    margin-right: 7%;
+    background: RGBA(0, 0, 0, 0.6); }
+    ul li {
+      list-style: none; }
+    ul a, ul a :hover, ul a :active {
+      color: #D8E1E7;
+      text-decoration: none; } }
+
+/*# sourceMappingURL=main.css.map */

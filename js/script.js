@@ -1,4 +1,4 @@
-$(document).ready(function(){
+	$(document).ready(function(){
 
 	console.log('working');
 
@@ -11,13 +11,15 @@ $(document).ready(function(){
 		}
 
 		// default songs
-		var castles = new Song('Castles Made of Sand', 'Jimi Hendrix', 'audio/Castles_Made_of_Sand.mp3'); 
-		var cemetery_drive = new Song('Cemetery Drive', 'My Chemical Romance', 'audio/Cemetery_drive.mp3'); 
+		var alright = new Song('Alright', 'Kendrick Lamar', 'audio/Alright.mp3'); 
+		var pyramids= new Song('Pyramids', 'Frank Ocean', 'audio/Pyramids.mp3'); 
 		var helena = new Song('Helena', 'My Chemical Romance', 'audio/Helena.mp3');
 		var berry = new Song('The Blacker the Berry', 'Kendrick Lamar', 'audio/The_Blacker_the_Berry.mp3')
 		var taylor_gang = new Song('Taylor Gang', 'Wiz Khalifa', 'audio/Taylor_Gang.mp3')
+		var devil = new Song('Booksmart Devil', 'Silversun Pickups', 'audio/Booksmart_Devil.mp3')
+		var house = new Song('Red House', 'Jimi Hendrix', 'audio/Red_House.mp3')
 
-		songs = [taylor_gang, berry, castles, cemetery_drive, helena];
+		songs = [taylor_gang, berry, alright, pyramids, helena, devil, house];
 
 		 audio = document.createElement('audio');
 		var shuffle = true; // default shuffle setting
@@ -180,9 +182,9 @@ $(document).ready(function(){
 			};	
 		});
 		
-			$('#aud-random').click(function(){
-				random_track();
-			});	
+		$('#aud-random').click(function(){
+			random_track();
+		});	
 
 		$('#add-song-submit').on('click', function(){
 			var song_name = $('#song-name-input').val();
