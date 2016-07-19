@@ -10,25 +10,26 @@
 			this.file_name = file_name;
 		}
 
-		// default songs
+		// songs in playlist
 		var alright = new Song('Alright', 'Kendrick Lamar', 'audio/Alright.mp3'); 
 		var pyramids= new Song('Pyramids', 'Frank Ocean', 'audio/Pyramids.mp3'); 
 		var helena = new Song('Helena', 'My Chemical Romance', 'audio/Helena.mp3');
-		var berry = new Song('The Blacker the Berry', 'Kendrick Lamar', 'audio/The_Blacker_the_Berry.mp3')
-		var taylor_gang = new Song('Taylor Gang', 'Wiz Khalifa', 'audio/Taylor_Gang.mp3')
-		var devil = new Song('Booksmart Devil', 'Silversun Pickups', 'audio/Booksmart_Devil.mp3')
-		var house = new Song('Red House', 'Jimi Hendrix', 'audio/Red_House.mp3')
+		var berry = new Song('The Blacker the Berry', 'Kendrick Lamar', 'audio/The_Blacker_the_Berry.mp3');
+		var taylor_gang = new Song('Taylor Gang', 'Wiz Khalifa', 'audio/Taylor_Gang.mp3');
+		var devil = new Song('Booksmart Devil', 'Silversun Pickups', 'audio/Booksmart_Devil.mp3');
+		var house = new Song('Red House', 'Jimi Hendrix', 'audio/Red_House.mp3');
+		var risk = new Song('Risk', 'Deftones', 'audio/Risk.mp3');
 
-		songs = [taylor_gang, berry, alright, pyramids, helena, devil, house];
+		songs = [taylor_gang, berry, alright, pyramids, helena, devil, house, risk];
 
-		 audio = document.createElement('audio');
+		audio = document.createElement('audio');
 		var shuffle = true; // default shuffle setting
 		var track_count = songs.length;
 		var i = Math.floor((Math.random() * track_count));
 		var clicked = true;	// regarding play click event; true because audio plays on load
 		 now_playing = songs[i];
 		 play_history = [];
-		var	h	= play_history.length - 1;
+		var h	= play_history.length - 1;
 
 		audio.src = songs[i].file_name;
 			e = 0;
@@ -37,25 +38,28 @@
 		var song_list = $('#playlist');
 		songs.map( (song, f) => {
 			var li = $('<li/>')
-				.addClass('song-name')
+				// .addClass('song-name')
 				.appendTo(song_list);
 			var a = $('<a>')
 				.addClass('playlist-item')
+				.attr('id', String(songs.indexOf(song)))
 				.attr('href', '#')
 				.text(song.name + ' - ' + song.artist)
 				.appendTo(li);
 		});
 
-		// make this functional - to play song on click (for testing); then to place in song order queue
-		// $('.playlist-item').on('click', function(){
-		// 	now_playing = this
-		// 	$('#now-playing').text(now_playing.name + ' - ' + now_playing.artist);
-		// 	history_push(now_playing);
-		// });
-
-		var history_push = function(){
-			play_history.push(now_playing);
+		var history_push = function(hps){
+			play_history.push(hps);
 		};
+
+			// make this functional - to play song on click (for testing); then to place in song order queue
+		$('.playlist-item').on('click', function(){
+			var selected = songs[this.id];
+			audio.src = selected.file_name;
+			audio.play();
+			$('#now-playing').text(selected.name + ' - ' + selected.artist);
+			history_push(selected);
+		});
 
 		var random_track = function(){
 			audio.pause();
@@ -75,9 +79,8 @@
 				$('#shuffle-status').text('Off');
 			};
 		};
+
 		show_shuffle_status();
-
-
 
 		$(audio).on('ended', function(){
 			if(shuffle){
@@ -118,7 +121,6 @@
 			};
 		});
 
-
 		$('#aud-shuffle').click(function(){
 
 			if(!shuffle){
@@ -129,6 +131,8 @@
 
 			show_shuffle_status();
 		});
+
+		// when song is selected from playlist, Taylor gang is populated in play_history
 
 		$('#aud-last').on('click', function(){
 
@@ -209,7 +213,7 @@
 				.appendTo(li);
 
 			console.log(song_name +' by ' + artist_name + " has been added to your playlist!");
-			history_push();
+			// history_push();
 		});
 	};
 
